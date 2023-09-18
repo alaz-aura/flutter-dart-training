@@ -43,6 +43,10 @@ class MyAppState extends ChangeNotifier {
     notifyListeners();
   }
 
+  void removeFavourite(WordPair pair) {
+    favourites.remove(pair);
+    notifyListeners();
+  }
 }
 
 class MyHomePage extends StatefulWidget {
@@ -59,7 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
       case 0:
         page = GeneratorPage();
         break;
-      case 1: page = Placeholder();
+      case 1: page = FavouritesPage();
         break;
       default:
         throw UnimplementedError('no widget for $selectedIndex');
@@ -146,6 +150,37 @@ class GeneratorPage extends StatelessWidget {
   }
 }
 
+class FavouritesPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    var appState = context.watch<MyAppState>();
+    if (appState.favourites.isEmpty) {
+      return Center(child: Text('No favourites yet. Return home & start liking.'),);
+    }
+
+    return ListView(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(20),
+          child: Text('You have '
+              '${appState.favourites.length} favourites:'),
+        ),
+        // tutorial suggests to use "messages.map((m) => Text(m)).toList()" instead
+        for (var pair in appState.favourites)
+          ListTile(
+            leading: IconButton(
+              icon: Icon(Icons.remove_circle),
+              color: Colors.redAccent,
+              onPressed: () {
+                appState.removeFavourite(pair);
+              },
+            ),
+            title: Text(pair.asLowerCase, semanticsLabel: pair.asPascalCase,)
+          ),
+      ],
+    );
+  }
+}
 
 
 class BigCard extends StatelessWidget {
