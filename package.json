@@ -1,0 +1,14 @@
+{
+  "name": "flutter-dart-training",
+  "version": "1.0.0",
+  "description": "* dart is type safe * dynamic types are allowed * pub.dev is the open source dart package manager * following this course https://codelabs.developers.google.com/codelabs/flutter-codelab-first#1",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@lcov-viewer/cli": "^1.3.0"
+  }
+}
