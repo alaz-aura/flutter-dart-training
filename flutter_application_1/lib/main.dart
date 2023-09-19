@@ -137,6 +137,7 @@ class GeneratorPage extends StatelessWidget {
               ),
               SizedBox(width: 10),
               ElevatedButton(
+                key: Key("nextButton"),
                 onPressed: () {
                   appState.getNext();
                 },
@@ -199,7 +200,8 @@ class BigCard extends StatelessWidget {
       color: theme.colorScheme.primary,    // this is the bg color for text background
       child: Padding (
         padding: const EdgeInsets.all(20.0),
-        child: Text(pair.asLowerCase, style: style, semanticsLabel: "${pair.first} ${pair.second}",),
+        child: Text(pair.asLowerCase, style: style, semanticsLabel: "${pair.first} ${pair.second}", key: Key("wordPair"),
+),
       ),
     );
   }
